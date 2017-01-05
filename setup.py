@@ -14,4 +14,8 @@ setup(
     entry_points={'pytest11': ['pytest_warnings = pytest_warnings']},
     install_requires=['pytest'],
     classifiers=[
-        "Framework :: Pytest"])
+        "Framework :: Pytest",
+        "Programming Language :: Python :: 2.7",
+        "Programming Language :: Python :: 3.3",
+        "Programming Language :: Python :: 3.4",
+        "Programming Language :: Python :: 3.5"])
