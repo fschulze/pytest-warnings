@@ -54,6 +54,9 @@ Changes
 0.3.0 - Unreleased
 ------------------
 
+- Add Travis CI config.
+  [dwaynebailey (Dwayne Bailey)]
+
 - Make wheels universal.
   [aragilar (James Tocknell)]
 
