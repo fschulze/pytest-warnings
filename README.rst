@@ -54,6 +54,8 @@ Changes
 0.3.0 - Unreleased
 ------------------
 
+- Make wheels universal.
+  [aragilar (James Tocknell)]
 
 
 0.2.0 - 2016-10-24
