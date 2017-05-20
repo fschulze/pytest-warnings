@@ -1,8 +1,9 @@
-from _pytest.recwarn import RecordedWarning, WarningsRecorder
 import inspect
 import os
 import pytest
 import warnings
+
+_DISABLED = False
 
 
 def _setoption(wmod, arg):
@@ -31,6 +32,13 @@ def _setoption(wmod, arg):
 
 
 def pytest_addoption(parser):
+    global _DISABLED
+    version = tuple(int(x) for x in pytest.__version__.split('.'))
+    if version[:2] >= (3, 1):
+        _DISABLED = True
+        warnings.warn('pytest-warnings plugin was introduced in core pytest on 3.1, please '
+                      'uninstall pytest-warnings')
+        return
     group = parser.getgroup("pytest-warnings")
     group.addoption(
         '-W', '--pythonwarnings', action='append',
@@ -42,6 +50,10 @@ def pytest_addoption(parser):
 
 @pytest.hookimpl(hookwrapper=True)
 def pytest_runtest_call(item):
+    if _DISABLED:
+        yield
+        return
+    from _pytest.recwarn import RecordedWarning, WarningsRecorder
     wrec = WarningsRecorder()
 
     def showwarning(message, category, filename, lineno, file=None, line=None):
