@@ -1,7 +1,9 @@
 pytest-warnings
 ===============
 
-py.test plugin to list Python warnings in pytest report
+py.test plugin to list Python warnings in pytest report.
+
+Integrated in pytest >= 3.1.0.
 
 
 Usage
@@ -51,7 +53,7 @@ Example
 Changes
 =======
 
-0.3.0 - Unreleased
+0.3.0 - 2017-05-21
 ------------------
 
 - Add Travis CI config.
