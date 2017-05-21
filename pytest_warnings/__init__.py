@@ -33,19 +33,27 @@ def _setoption(wmod, arg):
 
 def pytest_addoption(parser):
     global _DISABLED
-    version = tuple(int(x) for x in pytest.__version__.split('.'))
-    if version[:2] >= (3, 1):
+    version = []
+    for part in pytest.__version__.split('.'):
+        try:
+            version.append(int(part))
+        except ValueError:
+            version.append(part)
+    if tuple(version)[:2] >= (3, 1):
         _DISABLED = True
         warnings.warn('pytest-warnings plugin was introduced in core pytest on 3.1, please '
                       'uninstall pytest-warnings')
         return
     group = parser.getgroup("pytest-warnings")
-    group.addoption(
-        '-W', '--pythonwarnings', action='append',
-        help="set which warnings to report, see -W option of python itself.")
-    parser.addini("filterwarnings", type="linelist",
-                  help="Each line specifies warning filter pattern which would be passed"
-                  "to warnings.filterwarnings. Process after -W and --pythonwarnings.")
+    try:
+        group.addoption(
+            '-W', '--pythonwarnings', action='append',
+            help="set which warnings to report, see -W option of python itself.")
+        parser.addini("filterwarnings", type="linelist",
+                      help="Each line specifies warning filter pattern which would be passed"
+                      "to warnings.filterwarnings. Process after -W and --pythonwarnings.")
+    except ValueError:
+        pass
 
 
 @pytest.hookimpl(hookwrapper=True)

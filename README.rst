@@ -60,6 +60,10 @@ Changes
 - Make wheels universal.
   [aragilar (James Tocknell)]
 
+- Since this plugin is integrated in pytest 3.1.0, we show a deprecation
+  warning and advice to uninstall the plugin.
+  [nicoddemus (Bruno Oliveira), fschulze]
+
 
 0.2.0 - 2016-10-24
 ------------------
