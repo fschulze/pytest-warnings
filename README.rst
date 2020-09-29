@@ -1,6 +1,11 @@
 pytest-warnings
 ===============
 
+Warning
+
+This package is inactive and will not be maintained. The functionality of this package is
+present in `pytest <https://pypi.org/project/pytest/>`_.
+
 py.test plugin to list Python warnings in pytest report.
 
 Integrated in pytest >= 3.1.0.
